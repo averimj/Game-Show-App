@@ -1,8 +1,8 @@
-const phrase = new Phrase();
-// const game = new Game();
-
-const game;
+let game;
 
 const button = document.getElementById('btn__reset');
 
-button.addEventListener( 'click', game = new Game.startGame() )
+button.addEventListener( 'click', () => {
+  game = new Game();
+  game.startGame();
+})
