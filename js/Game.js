@@ -10,4 +10,10 @@
    ];
     this.activePhrase = null;
   }
+
+  getRandomPhrase() {
+    let randomPhrase = Math.floor(Math.random() * this.phrases.length);
+    return this.phrases[randomPhrase];
+  }
+
 }
