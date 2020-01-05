@@ -10,4 +10,19 @@
    ];
     this.activePhrase = null;
   }
+
+  getRandomPhrase() {
+    let randomPhrase = Math.floor(Math.random() * this.phrases.length);
+    return this.phrases[randomPhrase];
+  }
+
+  startGame() {
+    const overlay = document.getElementById('overlay');
+    overlay.style.visibility = 'hidden';
+
+    this.activePhrase = this.getRandomPhrase();
+    this.activePhrase.addPhraseToDisplay();
+  }
+
+
 }
