@@ -3,6 +3,7 @@ class Phrase {
     this.phrase = phrase;
   }
 
+
   addPhraseToDisplay() {
     const ul = document.querySelector('ul');
     const div = document.getElementById('banner');
@@ -15,7 +16,8 @@ class Phrase {
 
     console.log(phraseSplits);
 
-    // iterates thru each letter and creates an <li> for that letter, then adds the appropiate className for that letter. Appends the <li> to the <ul> which is then appended to the <div>
+    /* iterates thru each letter and creates an <li> for that letter, then adds the appropiate className for that letter.
+    Appends the <li> to the <ul> which is then appended to the <div> */
     for(let i = 0; i < phraseSplits.length; i++){
       if(phraseSplits[i] === ' '){
         const li = document.createElement('li');
@@ -33,5 +35,15 @@ class Phrase {
     console.log(div);
   }
 
+  checkLetter() {
+    const anyLetter = document.getElementById('qwerty');
+
+    anyLetter.addEventListener( 'click', (e) => {
+      let char = e.char;
+      let letter = String.fromCharCode(char);
+
+      console.log(letter);
+    });
+  }
 
 }
