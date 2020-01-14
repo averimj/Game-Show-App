@@ -40,4 +40,16 @@ class Phrase {
     return this.phrase.includes(letter);
   }
 
+  // reveals the matched letter on the screen
+  showMatchedLetter(letter) {
+    const matchingLetters = document.querySelectorAll('ul li');
+    
+    for(let i = 0; i < matchingLetters.length; i++) {
+     if (matchingLetters === letter) {
+       matchingLetters.className = ('show letter' + letter);
+     }
+   }
+
+  }
+
 }
