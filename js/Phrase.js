@@ -35,15 +35,21 @@ class Phrase {
     console.log(div);
   }
 
-  checkLetter() {
-    const anyLetter = document.getElementById('qwerty');
+  // checks to see if letter picked by user matches any letter in the phrase
+  checkLetter(letter) {
+    return this.phrase.includes(letter);
+  }
 
-    anyLetter.addEventListener( 'click', (e) => {
-      let char = e.char;
-      let letter = String.fromCharCode(char);
+  // reveals the matched letter on the screen
+  showMatchedLetter(letter) {
+    const matchingLetters = document.querySelectorAll('ul li');
+    
+    for(let i = 0; i < matchingLetters.length; i++) {
+     if (matchingLetters === letter) {
+       matchingLetters.className = ('show letter' + letter);
+     }
+   }
 
-      console.log(letter);
-    });
   }
 
 }
