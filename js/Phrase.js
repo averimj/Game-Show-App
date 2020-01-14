@@ -35,15 +35,9 @@ class Phrase {
     console.log(div);
   }
 
-  checkLetter() {
-    const anyLetter = document.getElementById('qwerty');
-
-    anyLetter.addEventListener( 'click', (e) => {
-      let char = e.char;
-      let letter = String.fromCharCode(char);
-
-      console.log(letter);
-    });
+  // checks to see if letter picked by user matches any letter in the phrase
+  checkLetter(letter) {
+    return this.phrase.includes(letter);
   }
 
 }
