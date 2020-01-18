@@ -42,14 +42,15 @@ class Phrase {
 
   // reveals the matched letter on the screen
   showMatchedLetter(letter) {
-    const matchingLetters = document.querySelectorAll('ul li');
-    
-    for(let i = 0; i < matchingLetters.length; i++) {
-     if (matchingLetters === letter) {
-       matchingLetters.className = ('show letter' + letter);
-     }
-   }
+    const listOfLI = document.querySelectorAll('ul li');
+    for(let i = 0; i < listOfLI.length; i++) {
+      let singleLetterOfLI = listOfLI[i].textContent
 
+      if (singleLetterOfLI === letter) {
+        listOfLI[i].classList.remove('hide');
+        listOfLI[i].classList.add('show');
+      }
+    }
   }
 
 }
