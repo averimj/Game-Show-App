@@ -4,7 +4,6 @@
     // set the # of misses to zero when the game starts
     this.missed = 0;
 
-
     // creates 5 quotes
      this.phrases = [
         new Phrase('Be courageous'),
@@ -27,15 +26,24 @@
   // removes the cover so player can see the letter board after they click the 'start game' button
   startGame() {
     const overlay = document.getElementById('overlay');
-    overlay.style.visibility = 'hidden';
+    overlay.style.visibility = 'none';
 
     this.activePhrase = this.getRandomPhrase();
     this.activePhrase.addPhraseToDisplay();
   }
 
-  // checks to see if letter picked by user matches any letter in the phrase
-  checkLetter(letter) {
-    return this.phrase.includes(letter);
+  // if any of the li's contains the word 'hide', returns false
+  checkForWin() {
+    const allLIs = document.querySelectorAll('ul li');
+
+    for (let i = 0; i < allLIs.length; i++){
+      const oneLI = allLIs[i];
+      if(oneLI.classList.contains('hide')){
+        return false;
+      } else {
+        return true;
+      }
+    };
   }
 
 
