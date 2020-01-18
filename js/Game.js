@@ -59,5 +59,28 @@
     }
   }
 
+  // displays a screen letting the user know if they've won or lost the game
+  gameOver(gameWon) {
+    let overlay = document.getElementById('overlay');
+    const gameOverMessage = document.getElementById('game-over-message');
+    
+    if (gameWon === true) {
+
+      overlay.classList.remove('start');
+      overlay.classList.add('win');
+
+      overlay.style.display = 'block';
+      gameOverMessage.textContent = 'Great Job...You Win!';
+
+    } else {
+      overlay.classList.remove('start');
+      overlay.classList.add('lose');
+
+      overlay.style.display = 'block';
+      gameOverMessage.textContent = 'You Lose...Try Again';
+    }
+  }
+
+
 
 }
