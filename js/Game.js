@@ -43,9 +43,21 @@
       } else {
         return true;
       }
-    };
+    }
   }
 
+  // removes a heart each time user guesses the wrong letter
+  removeLife() {
+    this.missed += 1
+    const images = document.querySelectorAll('li img');
+
+    for (let i = 0; i < this.missed; i++) {
+      let lostHeart = images[i].src = 'images/lostHeart.png';
+    }
+    if(this.missed === 5) {
+      this.gameOver(false);
+    }
+  }
 
 
 }
