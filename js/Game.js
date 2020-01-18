@@ -63,7 +63,7 @@
   gameOver(gameWon) {
     let overlay = document.getElementById('overlay');
     const gameOverMessage = document.getElementById('game-over-message');
-    
+
     if (gameWon === true) {
 
       overlay.classList.remove('start');
@@ -78,6 +78,23 @@
 
       overlay.style.display = 'block';
       gameOverMessage.textContent = 'You Lose...Try Again';
+    }
+  }
+
+  // WIP -- keep getting error message
+  handleInteraction(keyPressed) {
+    console.log(keyPressed);
+    keyPressed.disabled = 'true';
+
+    if (this.activePhrase.checkLetter() === false) {
+      keyPressed.classList.add('wrong') && removeLife();
+
+    } else {
+      keyPressed.classList.add('chosen');
+      checkForWin();
+      if (checkForWin() === true) {
+        gameOver();
+      }
     }
   }
 
