@@ -26,7 +26,7 @@
   // removes the cover so player can see the letter board after they click the 'start game' button
   startGame() {
     const overlay = document.getElementById('overlay');
-    overlay.style.visibility = 'none';
+    overlay.style.display = 'none';
 
     this.activePhrase = this.getRandomPhrase();
     this.activePhrase.addPhraseToDisplay();
