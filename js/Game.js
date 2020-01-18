@@ -4,7 +4,6 @@
     // set the # of misses to zero when the game starts
     this.missed = 0;
 
-
     // creates 5 quotes
      this.phrases = [
         new Phrase('Be courageous'),
@@ -27,15 +26,76 @@
   // removes the cover so player can see the letter board after they click the 'start game' button
   startGame() {
     const overlay = document.getElementById('overlay');
-    overlay.style.visibility = 'hidden';
+    overlay.style.visibility = 'none';
 
     this.activePhrase = this.getRandomPhrase();
     this.activePhrase.addPhraseToDisplay();
   }
 
-  // checks to see if letter picked by user matches any letter in the phrase
-  checkLetter(letter) {
-    return this.phrase.includes(letter);
+  // if any of the li's contains the word 'hide', returns false
+  checkForWin() {
+    const allLIs = document.querySelectorAll('ul li');
+
+    for (let i = 0; i < allLIs.length; i++){
+      const oneLI = allLIs[i];
+      if(oneLI.classList.contains('hide')){
+        return false;
+      } else {
+        return true;
+      }
+    }
+  }
+
+  // removes a heart each time user guesses the wrong letter
+  removeLife() {
+    this.missed += 1
+    const images = document.querySelectorAll('li img');
+
+    for (let i = 0; i < this.missed; i++) {
+      let lostHeart = images[i].src = 'images/lostHeart.png';
+    }
+    if(this.missed === 5) {
+      this.gameOver(false);
+    }
+  }
+
+  // displays a screen letting the user know if they've won or lost the game
+  gameOver(gameWon) {
+    let overlay = document.getElementById('overlay');
+    const gameOverMessage = document.getElementById('game-over-message');
+
+    if (gameWon === true) {
+
+      overlay.classList.remove('start');
+      overlay.classList.add('win');
+
+      overlay.style.display = 'block';
+      gameOverMessage.textContent = 'Great Job...You Win!';
+
+    } else {
+      overlay.classList.remove('start');
+      overlay.classList.add('lose');
+
+      overlay.style.display = 'block';
+      gameOverMessage.textContent = 'You Lose...Try Again';
+    }
+  }
+
+  // WIP -- keep getting error message
+  handleInteraction(keyPressed) {
+    console.log(keyPressed);
+    keyPressed.disabled = 'true';
+
+    if (this.activePhrase.checkLetter() === false) {
+      keyPressed.classList.add('wrong') && removeLife();
+
+    } else {
+      keyPressed.classList.add('chosen');
+      checkForWin();
+      if (checkForWin() === true) {
+        gameOver();
+      }
+    }
   }
 
 
