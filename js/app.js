@@ -11,6 +11,5 @@ button.addEventListener( 'click', () => {
 
 // listens for onscreen keyboard clicks
 keyboard.addEventListener( 'click', (e) => {
-  game = new Game();
   game.handleInteraction(e.target);
 })
