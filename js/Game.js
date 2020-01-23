@@ -5,13 +5,13 @@
     this.missed = 0;
 
     // creates 5 quotes
-     this.phrases = [
-        new Phrase('Be courageous'),
-        new Phrase('No rain no flowers'),
-        new Phrase('What we think we become'),
-        new Phrase('Conquer from within'),
-        new Phrase('Im possible')
-     ];
+    this.phrases = [
+      new Phrase('Be cOurAgeoUs'),
+      new Phrase('No raIn no fLoweRs'),
+      new Phrase('What wE ThInk wE BecoMe'),
+      new Phrase('Conquer From Within'),
+      new Phrase('Im poSsibLe')
+    ];
     this.activePhrase = null;
   }
 
@@ -27,7 +27,7 @@
   startGame() {
     const overlay = document.getElementById('overlay');
     overlay.style.display = 'none';
-    
+
     this.activePhrase = this.getRandomPhrase();
     this.activePhrase.addPhraseToDisplay();
   }
@@ -37,14 +37,15 @@
     const allLIs = document.querySelectorAll('ul li');
 
     for (let i = 0; i < allLIs.length; i++){
-      const oneLI = allLIs[i];
-      if(oneLI.classList.contains('hide')){
+      let oneLI = allLIs[i];
+      if(oneLI.classList.value.includes('hide') ) {
         return false;
       } else {
         return true;
       }
     }
   }
+
 
   // removes a heart each time user guesses the wrong letter
   removeLife() {
@@ -63,38 +64,40 @@
   gameOver(gameWon) {
     let overlay = document.getElementById('overlay');
     const gameOverMessage = document.getElementById('game-over-message');
+      if ( this.checkForWin() ) {
 
-    if (gameWon === true) {
+        overlay.classList.remove('start');
+        overlay.classList.add('win');
 
-      overlay.classList.remove('start');
-      overlay.classList.add('win');
+        overlay.style.display = 'block';
+        gameOverMessage.textContent = 'Great Job...You Win!';
 
-      overlay.style.display = 'block';
-      gameOverMessage.textContent = 'Great Job...You Win!';
+      } else {
+        overlay.classList.remove('start');
+        overlay.classList.add('lose');
 
-    } else {
-      overlay.classList.remove('start');
-      overlay.classList.add('lose');
-
-      overlay.style.display = 'block';
-      gameOverMessage.textContent = 'You Lose...Try Again';
-    }
+        overlay.style.display = 'block';
+        gameOverMessage.textContent = 'You Lose...Try Again';
+      }
   }
+
 
   // WIP -- keep getting error message
   handleInteraction(keyPressed) {
-    console.log(keyPressed);
-    keyPressed.disabled = 'true';
+    let letter = keyPressed.textContent;
 
-    if (this.activePhrase.checkLetter() === false) {
-      keyPressed.classList.add('wrong') && removeLife();
+    if (this.activePhrase.checkLetter(letter) ) {
 
-    } else {
+      this.activePhrase.showMatchedLetter(letter);
       keyPressed.classList.add('chosen');
-      checkForWin();
-      if (checkForWin() === true) {
-        gameOver();
+      keyPressed.disabled = 'true';
+      if (this.checkForWin() ) {
+        this.gameOver(true);
       }
+    } else {
+      keyPressed.classList.add('wrong');
+      keyPressed.disabled = 'true';
+      this.removeLife();
     }
   }
 
