@@ -1,6 +1,6 @@
 class Phrase {
   constructor(phrase) {
-    this.phrase = phrase;
+    this.phrase = phrase.toLowerCase();;
   }
 
 
@@ -9,12 +9,11 @@ class Phrase {
     const div = document.getElementById('banner');
 
     // takes 'this.phrase' and turns it into all lower case form
-    const phraseLowers = this.phrase.toLowerCase();
+    const phraseLowers = this.phrase;
 
     // splits each word into a single letter
     const phraseSplits = phraseLowers.split('');
 
-    console.log(phraseSplits);
 
     /* iterates thru each letter and creates an <li> for that letter, then adds the appropiate className for that letter.
     Appends the <li> to the <ul> which is then appended to the <div> */
@@ -32,13 +31,14 @@ class Phrase {
         div.appendChild(ul);
       }
     }
-    console.log(div);
   }
+
 
   // checks to see if letter picked by user matches any letter in the phrase
   checkLetter(letter) {
     return this.phrase.includes(letter);
   }
+
 
   // reveals the matched letter on the screen
   showMatchedLetter(letter) {
@@ -52,5 +52,6 @@ class Phrase {
       }
     }
   }
+
 
 }
