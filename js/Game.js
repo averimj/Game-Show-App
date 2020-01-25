@@ -6,11 +6,11 @@
 
     // creates 5 quotes
     this.phrases = [
-      new Phrase('Be cOurAgeoUs'),
-      new Phrase('No raIn no fLoweRs'),
-      new Phrase('What wE ThInk wE BecoMe'),
-      new Phrase('Conquer From Within'),
-      new Phrase('Im poSsibLe')
+      new Phrase('Be courageous'),
+      new Phrase('No rain no flowers'),
+      new Phrase('What we think we become'),
+      new Phrase('Conquer from within'),
+      new Phrase('Im possible')
     ];
     this.activePhrase = null;
   }
@@ -40,10 +40,9 @@
       let oneLI = allLIs[i];
       if(oneLI.classList.value.includes('hide') ) {
         return false;
-      } else {
-        return true;
       }
     }
+    return true
   }
 
 
@@ -56,7 +55,7 @@
       let lostHeart = images[i].src = 'images/lostHeart.png';
     }
     if(this.missed === 5) {
-      this.gameOver(false);
+      this.gameOver();
     }
   }
 
@@ -92,13 +91,18 @@
       keyPressed.classList.add('chosen');
       keyPressed.disabled = 'true';
       if (this.checkForWin() ) {
-        this.gameOver(true);
+        this.gameOver();
       }
     } else {
       keyPressed.classList.add('wrong');
       keyPressed.disabled = 'true';
       this.removeLife();
     }
+  }
+
+  reset() {
+
+
   }
 
 
