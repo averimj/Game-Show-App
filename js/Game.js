@@ -10,7 +10,12 @@
       new Phrase('No rain no flowers'),
       new Phrase('What we think we become'),
       new Phrase('Conquer from within'),
-      new Phrase('Im possible')
+      new Phrase('Be kind to yourself'),
+      new Phrase('Tough times dont last'),
+      new Phrase('Worry less smile more'),
+      new Phrase('I am worthy'),
+      new Phrase('Choose to shine'),
+      new Phrase('Rise and grind')
     ];
     this.activePhrase = null;
   }
@@ -64,13 +69,13 @@
     let overlay = document.getElementById('overlay');
     const gameOverMessage = document.getElementById('game-over-message');
       if ( this.checkForWin() ) {
+        setTimeout( () => {
+          overlay.classList.remove('start');
+          overlay.classList.add('win');
 
-        overlay.classList.remove('start');
-        overlay.classList.add('win');
-
-        overlay.style.display = 'block';
-        gameOverMessage.textContent = 'Great Job...You Win!';
-
+          overlay.style.display = 'block';
+          gameOverMessage.textContent = 'Great Job...You Win!';
+        }, 2000)
       } else {
         overlay.classList.remove('start');
         overlay.classList.add('lose');
