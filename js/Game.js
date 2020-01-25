@@ -83,6 +83,7 @@
         overlay.style.display = 'block';
         gameOverMessage.textContent = 'You Lose...Try Again';
       }
+    this.reset();
   }
 
 
@@ -106,8 +107,24 @@
   }
 
   reset() {
+    const what = document.querySelectorAll('ul li');
+    const so = document.querySelectorAll('li img');
 
+    while (what.firstChild ) {
+      what.removeChild(what.firstChild);
+    }
 
+    for (let i = 0; i < what.length; i++) {
+    let ever = what[i];
+        ever.removeAttribute('disabled');
+        ever.classList.remove('chosen');
+        ever.classList.remove('wrong');
+        ever.classList.add('key');
+    }
+
+    for (let a = 0; a < so.length; a++) {
+      let newHeart = so[a].src = 'images/liveHeart.png';
+    }
   }
 
 
