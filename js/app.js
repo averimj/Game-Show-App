@@ -1,7 +1,7 @@
 let game;
 
 const button = document.getElementById('btn__reset');
-const keyboard = document.getElementById('qwerty');
+const keyboard = document.getElementsByClassName('key');
 
 // listens for click on start button
 button.addEventListener( 'click', () => {
@@ -10,6 +10,9 @@ button.addEventListener( 'click', () => {
 })
 
 // listens for onscreen keyboard clicks
-keyboard.addEventListener( 'click', (e) => {
-  game.handleInteraction(e.target);
-})
+for (let i = 0; i < keyboard.length; i++){
+  let oneKey = keyboard[i];
+  oneKey.addEventListener( 'click', (e) => {
+    game.handleInteraction(e.target);
+  })
+}
