@@ -33,10 +33,12 @@ class Phrase {
     }
   }
 
+
   // checks to see if letter picked by user matches any letter in the phrase
   checkLetter(letter) {
     return this.phrase.includes(letter);
   }
+
 
   // reveals the matched letter on the screen
   showMatchedLetter(letter) {
@@ -50,5 +52,6 @@ class Phrase {
       }
     }
   }
+
 
 }
