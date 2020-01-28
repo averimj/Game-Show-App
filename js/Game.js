@@ -4,7 +4,7 @@
     // set the # of misses to zero when the game starts
     this.missed = 0;
 
-    // creates 5 quotes
+    // creates 10 quotes
     this.phrases = [
       new Phrase('Be courageous'),
       new Phrase('No rain no flowers'),
@@ -21,7 +21,7 @@
   }
 
 
-  // generates a random quote from my 5 quotes
+  // generates a random quote from my 10 quotes
   getRandomPhrase() {
     let randomPhrase = Math.floor(Math.random() * this.phrases.length);
     return this.phrases[randomPhrase];
@@ -37,7 +37,8 @@
     this.activePhrase.addPhraseToDisplay();
   }
 
-  // if any of the li's contains the word 'hide', returns false
+
+  // if any of the <li>'s contains the word 'hide', returns false
   checkForWin() {
     const allLIs = document.querySelectorAll('ul li');
 
@@ -68,6 +69,8 @@
   gameOver(gameWon) {
     let overlay = document.getElementById('overlay');
     const gameOverMessage = document.getElementById('game-over-message');
+
+      // if the user has won the game ... display the "Great Job...You Win!" message after 2 seconds
       if ( this.checkForWin() ) {
         setTimeout( () => {
           overlay.classList.remove('start');
@@ -77,22 +80,27 @@
           gameOverMessage.textContent = 'Great Job...You Win!';
         }, 2000)
       } else {
+
+        // if the user has lost the game ... display the "You Lose...Try Again" message
         overlay.classList.remove('start');
         overlay.classList.add('lose');
 
         overlay.style.display = 'block';
         gameOverMessage.textContent = 'You Lose...Try Again';
       }
+    // resets the game
     this.reset();
   }
 
 
-  // WIP -- keep getting error message
+
   handleInteraction(keyPressed) {
     let letter = keyPressed.textContent;
 
+    // if the letter checked by user is in the phrase ...
     if (this.activePhrase.checkLetter(letter) ) {
 
+      // show the letter on the screen, disabled it and check to see if the user has won the game
       this.activePhrase.showMatchedLetter(letter);
       keyPressed.classList.add('chosen');
       keyPressed.disabled = 'true';
@@ -100,33 +108,44 @@
         this.gameOver();
       }
     } else {
+
+      // if the letter checked by the user is NOT in the phrase ... remove 1 life/heart
       keyPressed.classList.add('wrong');
       keyPressed.disabled = 'true';
       this.removeLife();
     }
   }
 
+  // resets the game so the user can play again
   reset() {
-    const what = document.querySelectorAll('ul li');
-    const so = document.querySelectorAll('li img');
+    const allKeys = document.getElementsByClassName('key');
+    const images = document.querySelectorAll('li img');
+    const myLists = document.querySelectorAll('ul li')
 
-    while (what.firstChild ) {
-      what.removeChild(what.firstChild);
+    // removes the <li>'s from the previous game with a delay of 2 seconds
+    setTimeout( () => {
+      for(let m = 0; m < myLists.length; m++){
+        let myLi = myLists[m];
+        myLi.remove();
+      }
+    }, 2000)
+
+    // returns the keys back it to its default state
+    for (let i = 0; i < allKeys.length; i++) {
+    let oneKey = allKeys[i];
+        oneKey.removeAttribute('disabled');
+        oneKey.classList.remove('chosen');
+        oneKey.classList.remove('wrong');
     }
 
-    for (let i = 0; i < what.length; i++) {
-    let ever = what[i];
-        ever.removeAttribute('disabled');
-        ever.classList.remove('chosen');
-        ever.classList.remove('wrong');
-        ever.classList.add('key');
-    }
-
-    for (let a = 0; a < so.length; a++) {
-      let newHeart = so[a].src = 'images/liveHeart.png';
-    }
+    // sets the hearts back to live for a new game with a delay of 2 seconds
+    setTimeout( () => {
+      for (let a = 0; a < images.length; a++) {
+        images[a].src = 'images/liveHeart.png';
+      }
+    }, 2000)
+    
   }
-
 
 
 }

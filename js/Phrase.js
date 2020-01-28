@@ -1,12 +1,12 @@
 class Phrase {
   constructor(phrase) {
-    this.phrase = phrase.toLowerCase();;
+    this.phrase = phrase.toLowerCase();
   }
 
 
   addPhraseToDisplay() {
     const ul = document.querySelector('ul');
-    const div = document.getElementById('banner');
+    const div = document.getElementById('phrase');
 
     // takes 'this.phrase' and turns it into all lower case form
     const phraseLowers = this.phrase;
