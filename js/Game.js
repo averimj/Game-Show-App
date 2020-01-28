@@ -28,7 +28,7 @@
   }
 
 
-  // removes the cover so player can see the letter board after they click the 'start game' button
+  // removes the cover so user can see the letter board once they've clicked the 'start game' button
   startGame() {
     const overlay = document.getElementById('overlay');
     overlay.style.display = 'none';
@@ -38,7 +38,7 @@
   }
 
 
-  // if any of the <li>'s contains the word 'hide', returns false
+  // if any <li> contains the word 'hide', returns false
   checkForWin() {
     const allLIs = document.querySelectorAll('ul li');
 
@@ -65,12 +65,13 @@
     }
   }
 
+
   // displays a screen letting the user know if they've won or lost the game
   gameOver(gameWon) {
     let overlay = document.getElementById('overlay');
     const gameOverMessage = document.getElementById('game-over-message');
 
-      // if the user has won the game ... display the "Great Job...You Win!" message after 2 seconds
+      // if the user has won ... display the 'Great Job...You Win!' message after 2 seconds
       if ( this.checkForWin() ) {
         setTimeout( () => {
           overlay.classList.remove('start');
@@ -81,7 +82,7 @@
         }, 2000)
       } else {
 
-        // if the user has lost the game ... display the "You Lose...Try Again" message
+        // else the user has lost and display the 'You Lose...Try Again' message
         overlay.classList.remove('start');
         overlay.classList.add('lose');
 
@@ -93,14 +94,13 @@
   }
 
 
-
   handleInteraction(keyPressed) {
     let letter = keyPressed.textContent;
 
     // if the letter guessed by user is in the phrase ...
     if (this.activePhrase.checkLetter(letter) ) {
 
-      // show the letter on the screen, disabled it and check to see if the user has won the game
+      // show the letter on the screen, disable the letter and check to see if the user has won the game
       this.activePhrase.showMatchedLetter(letter);
       keyPressed.classList.add('chosen');
       keyPressed.disabled = 'true';
@@ -109,12 +109,13 @@
       }
     } else {
 
-      // if the letter guessed by the user is NOT in the phrase ... remove 1 life/heart
+      // else the letter guessed by the user is NOT in the phrase and remove 1 life/heart
       keyPressed.classList.add('wrong');
       keyPressed.disabled = 'true';
       this.removeLife();
     }
   }
+
 
   // resets the game so the user can play again
   reset() {
@@ -130,7 +131,7 @@
       }
     }, 2000)
 
-    // returns the keys back to its default state
+    // returns the keys back to their default state
     for (let i = 0; i < allKeys.length; i++) {
     let oneKey = allKeys[i];
         oneKey.removeAttribute('disabled');
@@ -138,7 +139,7 @@
         oneKey.classList.remove('wrong');
     }
 
-    // sets the "lost" hearts back to "live" for a new game with a delay of 2 seconds
+    // sets the 'lost' hearts back to 'live' hearts with a delay of 2 seconds
     setTimeout( () => {
       for (let a = 0; a < images.length; a++) {
         images[a].src = 'images/liveHeart.png';
