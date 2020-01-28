@@ -97,7 +97,7 @@
   handleInteraction(keyPressed) {
     let letter = keyPressed.textContent;
 
-    // if the letter checked by user is in the phrase ...
+    // if the letter guessed by user is in the phrase ...
     if (this.activePhrase.checkLetter(letter) ) {
 
       // show the letter on the screen, disabled it and check to see if the user has won the game
@@ -109,7 +109,7 @@
       }
     } else {
 
-      // if the letter checked by the user is NOT in the phrase ... remove 1 life/heart
+      // if the letter guessed by the user is NOT in the phrase ... remove 1 life/heart
       keyPressed.classList.add('wrong');
       keyPressed.disabled = 'true';
       this.removeLife();
@@ -130,7 +130,7 @@
       }
     }, 2000)
 
-    // returns the keys back it to its default state
+    // returns the keys back to its default state
     for (let i = 0; i < allKeys.length; i++) {
     let oneKey = allKeys[i];
         oneKey.removeAttribute('disabled');
@@ -138,13 +138,13 @@
         oneKey.classList.remove('wrong');
     }
 
-    // sets the hearts back to live for a new game with a delay of 2 seconds
+    // sets the "lost" hearts back to "live" for a new game with a delay of 2 seconds
     setTimeout( () => {
       for (let a = 0; a < images.length; a++) {
         images[a].src = 'images/liveHeart.png';
       }
     }, 2000)
-    
+
   }
 
 
