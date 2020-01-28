@@ -65,6 +65,7 @@
     }
   }
 
+
   // displays a screen letting the user know if they've won or lost the game
   gameOver(gameWon) {
     let overlay = document.getElementById('overlay');
@@ -93,7 +94,6 @@
   }
 
 
-
   handleInteraction(keyPressed) {
     let letter = keyPressed.textContent;
 
@@ -116,6 +116,7 @@
     }
   }
 
+
   // resets the game so the user can play again
   reset() {
     const allKeys = document.getElementsByClassName('key');
@@ -130,7 +131,7 @@
       }
     }, 2000)
 
-    // returns the keys back to its default state
+    // returns the keys back to their default state
     for (let i = 0; i < allKeys.length; i++) {
     let oneKey = allKeys[i];
         oneKey.removeAttribute('disabled');
