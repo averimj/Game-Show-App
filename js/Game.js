@@ -68,22 +68,22 @@
 
   // displays a screen letting the user know if they've won or lost the game
   gameOver(gameWon) {
-    let overlay = document.getElementById('overlay');
+    const overlay = document.getElementById('overlay');
     const gameOverMessage = document.getElementById('game-over-message');
 
       // if the user has won ... display the 'Great Job...You Win!' message after 2 seconds
       if ( this.checkForWin() ) {
-        setTimeout( () => {
           overlay.classList.remove('start');
+          overlay.classList.remove('lose');
           overlay.classList.add('win');
 
           overlay.style.display = 'block';
           gameOverMessage.textContent = 'Great Job...You Win!';
-        }, 2000)
       } else {
 
         // else the user has lost and display the 'You Lose...Try Again' message
         overlay.classList.remove('start');
+        overlay.classList.remove('win');
         overlay.classList.add('lose');
 
         overlay.style.display = 'block';
@@ -122,14 +122,14 @@
     const allKeys = document.getElementsByClassName('key');
     const images = document.querySelectorAll('li img');
     const myLists = document.querySelectorAll('ul li')
+    const overlay = document.getElementById('overlay');
+
 
     // removes the <li>'s from the previous game with a delay of 2 seconds
-    setTimeout( () => {
       for(let m = 0; m < myLists.length; m++){
         let myLi = myLists[m];
         myLi.remove();
       }
-    }, 2000)
 
     // returns the keys back to their default state
     for (let i = 0; i < allKeys.length; i++) {
@@ -140,11 +140,9 @@
     }
 
     // sets the 'lost' hearts back to 'live' hearts with a delay of 2 seconds
-    setTimeout( () => {
       for (let a = 0; a < images.length; a++) {
         images[a].src = 'images/liveHeart.png';
       }
-    }, 2000)
 
   }
 
